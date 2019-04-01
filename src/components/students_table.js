@@ -1,28 +1,25 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import StudentRow from './student_row';
 
 class StudentTable extends Component {
-    render() {        
-        // const {students} = this.state; // same as const students = this.state.students;
-        const {col='s12', list} = this.props;
+    render() {
+        // const { students } = this.state; // same as const students = this.state.students;
+        const { col = 's12', list } = this.props; //const col = this.props.col, const list = this.props.list
 
         const studentElements = list.map((student) => {
-            return (
-                <tr key={student.id}>
-                    <td>{student.name}</td>
-                    <td>{student.course}</td>
-                    <td>{student.grade}</td>
-                </tr>
-            );
+            // return <StudentRow key={student.id} name={student.name} course={student.course} grade={student.grade} id={student.id} />
+            return <StudentRow delete={this.props.delete} key={student.id} {...student} />
         });
 
         return (
-            <div className = {`col ${col}`}>
+            <div className={`col ${col}`}>
                 <table>
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Course</th>
                             <th>Grade</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
